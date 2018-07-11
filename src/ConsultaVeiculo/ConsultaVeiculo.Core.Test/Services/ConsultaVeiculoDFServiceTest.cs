@@ -65,14 +65,14 @@ namespace ConsultaVeiculo.Core.Test.Services
         [Trait("Category", "Remote")]
         public void ConsultaVeiculoDFService_RemoteChromeTest()
         {
-            SeleniumRemote(Browser.Chrome, "PBF4510", "01141425766");
+            SeleniumRemote(Browser.Chrome, "", "");
         }
 
         [Fact]
         [Trait("Category", "Browser")]
         public void ConsultaVeiculoDFService_BrowserChromeTest()
         {
-            SeleniumBrowser(Browser.Chrome, "PBF4510", "01141425766");
+            SeleniumBrowser(Browser.Chrome, "", "");
         }
     }
 }
