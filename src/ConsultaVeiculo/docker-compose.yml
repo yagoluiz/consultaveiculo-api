@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  consultaveiculo.api:
+    image: ${DOCKER_REGISTRY}consultaveiculoapi
+    build:
+      context: .
+      dockerfile: ConsultaVeiculo.API/Dockerfile
