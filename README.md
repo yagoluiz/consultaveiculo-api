@@ -10,6 +10,7 @@ Os dados disponibilizados pela API são apenas de veículos pertencentes ao [DET
 
 ```json
  {
+    "Placa": "string",
     "Renavam": "string",
     "Chassi": "string",
     "MarcaModelo": "string",

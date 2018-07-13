@@ -84,6 +84,7 @@ namespace ConsultaVeiculo.Core.Services
         public void PreencherCaptcha(string captcha)
         {
             _webDriver.SetText(By.Name("CODSEG"), captcha);
+
         }
 
         public void ProcessarCaptcha()
@@ -93,28 +94,32 @@ namespace ConsultaVeiculo.Core.Services
 
         public VeiculoModel ObterDadosVeiculo()
         {
-            var veiculo = new VeiculoModel
+            var veiculo = new VeiculoModel();
+
+            var pageSource = _webDriver.PageSource;
+
+            if (pageSource != null)
             {
-                Placa = _webDriver.FindElement(By.Id("Placa")).GetAttribute("value"),
-                Renavam = _webDriver.FindElement(By.Id("Renavam")).GetAttribute("value"),
-                Chassi = _webDriver.FindElement(By.Id("Chassi")).GetAttribute("value"),
-                MarcaModelo = _webDriver.FindElement(By.Id("MarcaModelo")).GetAttribute("value"),
-                Cor = _webDriver.FindElement(By.Id("Cor")).GetAttribute("value"),
-                AnoModelo = _webDriver.FindElement(By.Id("AnoGabModelo")).GetAttribute("value"),
-                Tipo = _webDriver.FindElement(By.Id("Tipo")).GetAttribute("value"),
-                Combustivel = _webDriver.FindElement(By.Id("Combustivel")).GetAttribute("value"),
-                PotenciaCilindradas = _webDriver.FindElement(By.Id("PotenciaCilindradas")).GetAttribute("value"),
-                Categoria = _webDriver.FindElement(By.Id("Categoria")).GetAttribute("value"),
-                CapacidadePassageiros = _webDriver.FindElement(By.Id("CapacidadePassageiros")).GetAttribute("value"),
-                Especie = _webDriver.FindElement(By.Id("Especie")).GetAttribute("value"),
-                Nacionalidade = _webDriver.FindElement(By.Id("Nacionalidade")).GetAttribute("value"),
-                Municipio = _webDriver.FindElement(By.Id("Municipio")).GetAttribute("value"),
-                RouboFurto = _webDriver.FindElement(By.Id("RouboFurto")).GetAttribute("value"),
-                SituacaoVeiculo = _webDriver.FindElement(By.Id("SituacaoVeiculo")).GetAttribute("value"),
-                AnoUltimoLicenciamento = _webDriver.FindElement(By.Id("AnoUltimoLicenciamento")).GetAttribute("value"),
-                Restricao = _webDriver.FindElement(By.Id("restricao")).GetAttribute("value"),
-                Multa = _webDriver.PageSource.Contains("Não existe(m) débito(s) de Multa até o presente momento.") ? "UFA! NÃO HÁ MULTA NO SISTEMA" : "OPS! HÁ MULTA NO SISTEMA"
-            };
+                veiculo.Placa = _webDriver.FindElement(By.Id("Placa")).GetAttribute("value");
+                veiculo.Renavam = _webDriver.FindElement(By.Id("Renavam")).GetAttribute("value");
+                veiculo.Chassi = _webDriver.FindElement(By.Id("Chassi")).GetAttribute("value");
+                veiculo.MarcaModelo = _webDriver.FindElement(By.Id("MarcaModelo")).GetAttribute("value");
+                veiculo.Cor = _webDriver.FindElement(By.Id("Cor")).GetAttribute("value");
+                veiculo.AnoModelo = _webDriver.FindElement(By.Id("AnoGabModelo")).GetAttribute("value");
+                veiculo.Tipo = _webDriver.FindElement(By.Id("Tipo")).GetAttribute("value");
+                veiculo.Combustivel = _webDriver.FindElement(By.Id("Combustivel")).GetAttribute("value");
+                veiculo.PotenciaCilindradas = _webDriver.FindElement(By.Id("PotenciaCilindradas")).GetAttribute("value");
+                veiculo.Categoria = _webDriver.FindElement(By.Id("Categoria")).GetAttribute("value");
+                veiculo.CapacidadePassageiros = _webDriver.FindElement(By.Id("CapacidadePassageiros")).GetAttribute("value");
+                veiculo.Especie = _webDriver.FindElement(By.Id("Especie")).GetAttribute("value");
+                veiculo.Nacionalidade = _webDriver.FindElement(By.Id("Nacionalidade")).GetAttribute("value");
+                veiculo.Municipio = _webDriver.FindElement(By.Id("Municipio")).GetAttribute("value");
+                veiculo.RouboFurto = _webDriver.FindElement(By.Id("RouboFurto")).GetAttribute("value");
+                veiculo.SituacaoVeiculo = _webDriver.FindElement(By.Id("SituacaoVeiculo")).GetAttribute("value");
+                veiculo.AnoUltimoLicenciamento = _webDriver.FindElement(By.Id("AnoUltimoLicenciamento")).GetAttribute("value");
+                veiculo.Restricao = _webDriver.FindElement(By.Id("restricao")).GetAttribute("value");
+                veiculo.Multa = _webDriver.PageSource.Contains("Não existe(m) débito(s) de Multa até o presente momento.") ? "UFA! NÃO HÁ MULTA NO SISTEMA" : "OPS! HÁ MULTA NO SISTEMA";
+            }
 
             return veiculo;
         }

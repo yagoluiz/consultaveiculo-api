@@ -24,10 +24,10 @@ namespace ConsultaVeiculo.API.Controllers
         /// Dados de veículo do Distrito Federal (DF)
         /// </summary>
         /// <param name="placa">Parâmetro da placa no formato "AAA9999".</param>
-        /// <param name="renavam">Parâmetro do renavam "yyyyMM".</param>
+        /// <param name="renavam">Parâmetro do renavam "99999999999".</param>
         /// <returns>Dados de veículo do Distrito Federal (DF).</returns>
         /// <response code="200">Dados de veículo do Distrito Federal (DF).</response>
-        /// <response code="400">Formato dos parâmetros inválidos.</response>
+        /// <response code="400">Placa e/ou RENAVAM inexistente na base de dados.</response>
         /// <response code="500">Erro interno no servidor.</response>
         [HttpGet]
         [Route("df/{placa}/{renavam}")]
@@ -38,7 +38,7 @@ namespace ConsultaVeiculo.API.Controllers
         {
             if (!(Regex.IsMatch(placa, "^[a-zA-Z]{3}[0-9]{4}$") && Regex.IsMatch(renavam, "^([0-9]{11})$")))
             {
-                return BadRequest("Formato dos parâmetros inválidos");
+                return BadRequest("Placa e/ou RENAVAM inexistente na base de dados");
             }
 
             var consultaVeiculoDF = new ConsultaVeiculoDFService(BuilderConfiguration.AddConfigurationDirectory(), Browser.Chrome, remote: true);
